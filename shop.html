@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Shop | D'REGAL</title>
+    <meta
+      name="description"
+      content="Shop the D'REGAL collection of contemporary ready-made pieces."
+    />
+    <link rel="icon" href="assets/logo/dregal-logo.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <script src="js/products.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/shop.js" defer></script>
+  </head>
+  <body>
+    <header data-site-header></header>
+    <main id="main-content">
+      <section class="page-intro">
+        <p class="eyebrow">The collection</p>
+        <h1>Defined by how you wear it.</h1>
+        <p>
+          Our current ready-made pieces. For size, fit, customisation or delivery questions, speak
+          with D’REGAL directly.
+        </p>
+      </section>
+      <section class="shop-controls" aria-label="Shop controls">
+        <input
+          type="search"
+          id="product-search"
+          placeholder="Search the collection"
+          aria-label="Search products"
+        />
+        <div class="filter-pills" aria-label="Product category">
+          <button class="is-active" data-filter="all">All</button>
+          <button data-filter="joggers">Joggers</button>
+          <button data-filter="jorts">Jorts</button>
+          <button data-filter="tank-tops">Tank tops</button>
+        </div>
+        <select id="product-sort" aria-label="Sort products">
+          <option value="featured">Sort: featured</option>
+          <option value="low-high">Price: low to high</option>
+          <option value="high-low">Price: high to low</option>
+          <option value="name">Name: A–Z</option>
+        </select>
+      </section>
+      <section class="shop-grid-wrap">
+        <div class="shop-grid" data-shop-grid></div>
+        <p class="empty-state" data-no-results hidden>
+          No pieces match that search.
+          <a href="shop.html">Reset filters</a>
+        </p>
+      </section>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+  </body>
+</html>
