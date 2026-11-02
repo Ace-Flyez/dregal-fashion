@@ -6,11 +6,11 @@ function renderHeader() {
     <div class="announcement">Nigeria & worldwide enquiries welcome <a href="https://wa.me/2347031605920" target="_blank" rel="noreferrer">Talk to us</a></div>
     <nav class="site-nav" aria-label="Main navigation">
       <a class="brand" href="index.html" aria-label="D'Regal home"><img src="assets/logo/dregal-logo.svg" alt="D'REGAL"></a>
-      <button class="menu-button" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span><span class="sr-only">Open menu</span></button>
+      <button class="menu-button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" /></svg></button>
       <div class="nav-links" id="site-menu">
         <a href="shop.html">Shop</a><a href="about.html">Our story</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a>
       </div>
-      <div class="nav-actions"><button class="currency-toggle" type="button" data-currency-toggle>₦ / $</button><button class="cart-button" data-cart-toggle aria-expanded="false" aria-controls="cart-drawer">Bag <span data-cart-count>0</span></button></div>
+      <div class="nav-actions"><button class="currency-toggle" type="button" data-currency-toggle aria-label="Switch currency"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h10M7 19h10M9 5c4 2 4 5 0 7s-4 5 0 7M15 5c-4 2-4 5 0 7s4 5 0 7" /></svg><span>₦/$</span></button><button class="cart-button" data-cart-toggle aria-expanded="false" aria-controls="cart-drawer" aria-label="Open shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z M9 8a3 3 0 0 1 6 0" /></svg><span data-cart-count>0</span></button></div>
     </nav>
     <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping bag" aria-hidden="true"><div class="cart-drawer__header"><h2>Your bag</h2><button data-cart-close aria-label="Close bag">×</button></div><div data-cart-items></div><div class="cart-drawer__footer"><p>Subtotal <strong data-cart-subtotal>₦0</strong></p><a class="button button--dark" data-cart-whatsapp target="_blank" rel="noreferrer">Order via WhatsApp</a><p class="cart-note">Payment and delivery details are confirmed with D’REGAL.</p></div></aside><div class="cart-scrim" data-cart-close></div>`;
 }
