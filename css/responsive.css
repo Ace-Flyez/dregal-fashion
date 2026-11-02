@@ -155,6 +155,189 @@
   }
 }
 
+/* Device-safe responsive foundation for iOS, Android and narrow landscape screens. */
+@supports (padding: max(0px)) {
+  .site-nav,
+  .announcement,
+  .site-footer {
+    padding-left: max(var(--page), env(safe-area-inset-left));
+    padding-right: max(var(--page), env(safe-area-inset-right));
+  }
+
+  .cart-drawer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --page: clamp(1rem, 5vw, 1.5rem);
+  }
+
+  .site-nav {
+    min-height: 68px;
+    height: auto;
+  }
+
+  .announcement {
+    min-height: 32px;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+    text-align: center;
+  }
+
+  .nav-actions {
+    gap: 0.25rem;
+  }
+
+  .currency-toggle {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.58rem;
+  }
+
+  .cart-button {
+    padding-inline: 0.45rem;
+  }
+
+  .hero,
+  .story-hero {
+    min-height: 0;
+  }
+
+  .hero__copy {
+    min-height: min(520px, 78svh);
+  }
+
+  .hero__image {
+    min-height: min(560px, 90svh);
+  }
+
+  .hero__copy h1,
+  .story-hero__copy h1 {
+    overflow-wrap: anywhere;
+  }
+
+  .campaign__copy,
+  .campaign__image,
+  .contact-details,
+  .contact-form,
+  .product-purchase,
+  .gallery,
+  .footer-brand,
+  .footer-grid > div {
+    min-width: 0;
+  }
+
+  .gallery img {
+    min-width: 0;
+  }
+
+  .shop-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .shop-controls input,
+  .shop-controls select {
+    grid-column: auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .filter-pills {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    padding-bottom: 0.2rem;
+    scrollbar-width: none;
+  }
+
+  .filter-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pills button {
+    flex: 0 0 auto;
+  }
+
+  .product-card__info h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .faq-item button {
+    font-size: clamp(1.05rem, 4vw, 1.3rem);
+  }
+
+  .payment-strip {
+    row-gap: 0.45rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid,
+  .shop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card__image {
+    aspect-ratio: 4 / 5;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .newsletter form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) and (orientation: landscape) and (max-height: 600px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero__copy {
+    min-height: 390px;
+    padding-block: 2rem;
+  }
+
+  .hero__image {
+    min-height: 390px;
+  }
+
+  .story-hero {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .story-hero__image {
+    min-height: 390px;
+  }
+
+  .story-hero__copy {
+    min-height: 390px;
+    padding-block: 2rem;
+  }
+}
+
 @media (min-width: 761px) and (max-width: 1100px) and (orientation: landscape) {
   :root {
     --page: 2.25rem;
