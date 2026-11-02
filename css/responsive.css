@@ -347,10 +347,12 @@
   .cart-button span {
     position: absolute;
     top: -4px;
-    right: -4px;
+    left: 50%;
+    right: auto;
     width: 16px;
     height: 16px;
     font-size: 9px;
+    transform: translateX(-50%);
   }
 
   .nav-links {
