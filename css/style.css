@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
   --black: #111;
@@ -869,4 +869,561 @@ button {
 }
 .faq-item.is-open button span:last-child {
   transform: rotate(45deg);
+}
+
+/* D'REGAL refinement layer: shared grid, depth and interaction details. */
+:root {
+  --page: clamp(1.25rem, 5vw, 5.5rem);
+  --content: 1380px;
+  --radius: 18px;
+  --radius-small: 10px;
+  --shadow-soft: 0 18px 50px rgba(17, 17, 17, 0.08);
+  --shadow-hover: 0 24px 65px rgba(17, 17, 17, 0.14);
+}
+
+body {
+  background: var(--cream);
+}
+
+main,
+.site-footer,
+.announcement,
+.site-nav {
+  width: 100%;
+}
+
+.site-nav {
+  height: 88px;
+  padding-inline: max(var(--page), calc((100vw - var(--content)) / 2));
+  border-bottom: 0;
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.08);
+}
+
+.announcement {
+  min-height: 34px;
+  align-items: center;
+  letter-spacing: 0.1em;
+}
+
+.brand img {
+  width: 148px;
+}
+
+.nav-links {
+  gap: 1.8rem;
+}
+
+.nav-links a,
+.cart-button,
+.button,
+.filter-pills button,
+.option-buttons button,
+.product-card__add,
+.shop-controls input,
+.shop-controls select {
+  border-radius: 999px;
+}
+
+.nav-links a {
+  padding: 0.55rem 0.85rem;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.nav-links a:hover {
+  background: var(--cream);
+  opacity: 1;
+}
+
+.cart-button {
+  padding: 0.55rem 0.8rem;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.cart-button:hover {
+  background: var(--cream);
+  opacity: 1;
+}
+
+.cart-button span {
+  border-radius: 999px;
+}
+
+.button {
+  min-height: 52px;
+  padding-inline: 1.6rem;
+  box-shadow: 0 8px 20px rgba(17, 17, 17, 0.08);
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(17, 17, 17, 0.12);
+}
+
+.button:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(17, 17, 17, 0.25);
+  outline-offset: 3px;
+}
+
+.hero {
+  width: min(100% - 2 * var(--page), var(--content));
+  min-height: min(760px, calc(100svh - 122px));
+  margin: clamp(1rem, 2vw, 2rem) auto 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero__copy {
+  padding: clamp(2rem, 5vw, 5.5rem);
+}
+
+.hero__copy h1 {
+  font-weight: 600;
+}
+
+.hero__image img,
+.campaign__image img,
+.editorial__grid img,
+.story-hero__image img,
+.gallery img,
+.instagram__grid img {
+  transition:
+    transform 0.6s ease,
+    filter 0.6s ease;
+}
+
+.hero__image:hover img,
+.campaign__image:hover img,
+.editorial__grid figure:hover img,
+.story-hero__image:hover img,
+.gallery img:hover,
+.instagram__grid img:hover {
+  transform: scale(1.025);
+  filter: grayscale(0.35);
+}
+
+.collection-section,
+.editorial,
+.contact-grid,
+.story-copy,
+.values,
+.faq-list {
+  width: min(100%, var(--content));
+  margin-inline: auto;
+}
+
+.collection-section {
+  padding-top: clamp(5rem, 9vw, 9rem);
+}
+
+.section-title,
+.page-intro h1,
+.hero__copy h1,
+.product-purchase h1,
+.story-hero__copy h1 {
+  font-weight: 600;
+}
+
+.product-card {
+  min-width: 0;
+}
+
+.product-card__image {
+  border-radius: var(--radius-small);
+  box-shadow: 0 10px 28px rgba(17, 17, 17, 0.06);
+}
+
+.product-card__image img {
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+.product-card:hover .product-card__image {
+  box-shadow: var(--shadow-hover);
+}
+
+.product-card:hover .product-card__image img {
+  filter: grayscale(0.35);
+}
+
+.product-card__badge {
+  border-radius: 999px;
+  box-shadow: 0 5px 14px rgba(17, 17, 17, 0.1);
+}
+
+.product-card__add {
+  display: inline-flex;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid var(--black);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.product-card__add:hover {
+  background: var(--black);
+  color: var(--white);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.campaign__image,
+.story-hero__image,
+.editorial__grid figure,
+.instagram__grid img {
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.philosophy {
+  position: relative;
+  overflow: hidden;
+}
+
+.philosophy::after {
+  position: absolute;
+  right: 8%;
+  bottom: -30%;
+  width: 28rem;
+  height: 28rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  content: '';
+}
+
+.instagram {
+  width: min(100% - 2 * var(--page), var(--content));
+  margin-inline: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.newsletter {
+  width: min(100%, var(--content));
+  margin-inline: auto;
+  padding-inline: var(--page);
+}
+
+.newsletter form {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.55rem 0.25rem 1rem;
+  background: var(--white);
+}
+
+.newsletter button {
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--white);
+  padding: 0.65rem 1rem;
+}
+
+.site-footer {
+  margin-top: 0;
+}
+
+.page-intro {
+  width: min(100% - 2 * var(--page), var(--content));
+  margin-inline: auto;
+  padding-inline: 0;
+  padding-top: clamp(5rem, 10vw, 9rem);
+  background: var(--cream);
+  border-bottom: 0;
+}
+
+.shop-controls {
+  width: min(100% - 2 * var(--page), var(--content));
+  margin: 0 auto;
+  padding-inline: 0;
+  padding-top: 1.5rem;
+  border-bottom: 0;
+}
+
+.shop-controls input,
+.shop-controls select {
+  border-color: var(--line);
+  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.04);
+}
+
+.filter-pills button,
+.option-buttons button {
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.filter-pills button:hover,
+.option-buttons button:hover {
+  transform: translateY(-1px);
+}
+
+.shop-grid-wrap {
+  width: min(100%, var(--content));
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+.product-detail {
+  width: min(100%, var(--content));
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+.gallery img {
+  border-radius: var(--radius-small);
+}
+
+.availability-note,
+.product-meta,
+.cart-drawer,
+.faq-item {
+  border-radius: var(--radius-small);
+}
+
+.availability-note {
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.04);
+}
+
+.cart-drawer {
+  margin: 0.75rem;
+  height: calc(100dvh - 1.5rem);
+  box-shadow: -18px 0 55px rgba(17, 17, 17, 0.2);
+}
+
+.cart-drawer__header,
+.cart-drawer__footer {
+  padding-inline: 1.5rem;
+}
+
+.story-hero {
+  width: min(100% - 2 * var(--page), var(--content));
+  margin: clamp(1rem, 2vw, 2rem) auto 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.story-hero__copy {
+  padding: clamp(2rem, 5vw, 5.5rem);
+}
+
+.contact-grid {
+  padding-inline: 0;
+}
+
+.contact-details > div,
+.contact-form {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-small);
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.04);
+}
+
+.contact-details {
+  gap: 0.75rem;
+}
+
+.faq-item {
+  padding-inline: 1.25rem;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.faq-item.is-open {
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Current storefront direction: sharper controls, Space Grotesk and a violet accent. */
+:root {
+  --accent: #a855f7;
+  --radius: 12px;
+  --radius-small: 8px;
+  --sans: 'Space Grotesk', Arial, sans-serif;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: #f7f7f5;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 0.5rem;
+}
+
+.currency-toggle {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--white);
+  padding: 0.52rem 0.7rem;
+  color: var(--black);
+  font: 700 0.68rem var(--sans);
+  letter-spacing: 0.06em;
+}
+
+.currency-toggle:hover,
+.currency-toggle:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button,
+.filter-pills button,
+.option-buttons button,
+.product-card__add,
+.shop-controls input,
+.shop-controls select,
+.newsletter form,
+.newsletter button,
+.nav-links a,
+.cart-button {
+  border-radius: 6px;
+}
+
+.button--dark:hover,
+.filter-pills button.is-active,
+.option-buttons button.is-selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.text-link:hover,
+.footer-links a:hover,
+.contact-details a:hover {
+  color: var(--accent);
+}
+
+.shop-controls {
+  align-items: center;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(155px, 175px);
+}
+
+.shop-controls select {
+  min-height: 47px;
+  appearance: auto;
+  padding-right: 0.75rem;
+}
+
+.filter-pills {
+  justify-content: flex-end;
+}
+
+.filter-pills button {
+  min-height: 47px;
+  padding-inline: 1rem;
+}
+
+.payment-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #444;
+  color: #aaa;
+  font: 0.62rem var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.payment-strip strong {
+  border: 1px solid #666;
+  border-radius: 4px;
+  padding: 0.35rem 0.5rem;
+  color: #fff;
+  font-size: 0.58rem;
+}
+
+.exchange-note {
+  color: #aaa;
+  font: 0.65rem var(--mono);
+}
+
+.contact-details > div,
+.contact-form,
+.faq-item.is-open {
+  border-radius: 8px;
+}
+
+/* Final alignment pass for wide and landscape screens. */
+.shop-grid-wrap {
+  width: min(calc(100% - 2 * var(--page)), var(--content));
+  padding-inline: 0;
+}
+
+.shop-grid {
+  width: 100%;
+}
+
+.shop-controls select {
+  position: relative;
+  appearance: none;
+  min-width: 175px;
+  padding: 0.8rem 2.5rem 0.8rem 1rem;
+  background-color: var(--white);
+  background-image: linear-gradient(45deg, transparent 50%, var(--black) 50%),
+    linear-gradient(135deg, var(--black) 50%, transparent 50%);
+  background-position: calc(100% - 18px) 21px, calc(100% - 13px) 21px;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  line-height: 1.2;
+}
+
+.shop-controls select:hover,
+.shop-controls select:focus {
+  border-color: var(--accent);
+}
+
+.eyebrow {
+  color: var(--accent);
+}
+
+.text-link {
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-pills button:hover,
+.option-buttons button:hover,
+.currency-toggle:hover,
+.currency-toggle:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.product-card__add:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.newsletter button:hover {
+  background: var(--accent);
 }

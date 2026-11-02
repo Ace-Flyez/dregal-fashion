@@ -12,7 +12,7 @@ const products = [
       'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1200&q=85',
     images: [
       'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=1200&q=85',
-      'https://images.unsplash.com/photo-1506629905607-d405b7a895c1?auto=format&fit=crop&w=1200&q=85',
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85',
     ],
     badge: 'Core piece',
   },
@@ -41,7 +41,7 @@ const products = [
     colours: [],
     sizes: [],
     image:
-      'https://images.unsplash.com/photo-1506629905607-d405b7a895c1?auto=format&fit=crop&w=1200&q=85',
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1200&q=85',
     images: [
       'https://images.unsplash.com/photo-1506629905607-d405b7a895c1?auto=format&fit=crop&w=1200&q=85',
       'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=1200&q=85',
@@ -50,10 +50,13 @@ const products = [
   },
 ];
 
-const formatPrice = (price) =>
-  new Intl.NumberFormat('en-NG', {
+const formatPrice = (price) => {
+  const currency = window.dregalCurrency || 'NGN';
+  const amount = currency === 'USD' ? price / (window.dregalExchangeRate || 1348.4316) : price;
+  return new Intl.NumberFormat(currency === 'USD' ? 'en-US' : 'en-NG', {
     style: 'currency',
-    currency: 'NGN',
-    maximumFractionDigits: 0,
-  }).format(price);
+    currency,
+    maximumFractionDigits: currency === 'USD' ? 2 : 0,
+  }).format(amount);
+};
 const getProduct = (id) => products.find((product) => product.id === id);

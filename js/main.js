@@ -10,7 +10,7 @@ function renderHeader() {
       <div class="nav-links" id="site-menu">
         <a href="shop.html">Shop</a><a href="about.html">Our story</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a>
       </div>
-      <button class="cart-button" data-cart-toggle aria-expanded="false" aria-controls="cart-drawer">Bag <span data-cart-count>0</span></button>
+      <div class="nav-actions"><button class="currency-toggle" type="button" data-currency-toggle>₦ / $</button><button class="cart-button" data-cart-toggle aria-expanded="false" aria-controls="cart-drawer">Bag <span data-cart-count>0</span></button></div>
     </nav>
     <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping bag" aria-hidden="true"><div class="cart-drawer__header"><h2>Your bag</h2><button data-cart-close aria-label="Close bag">×</button></div><div data-cart-items></div><div class="cart-drawer__footer"><p>Subtotal <strong data-cart-subtotal>₦0</strong></p><a class="button button--dark" data-cart-whatsapp target="_blank" rel="noreferrer">Order via WhatsApp</a><p class="cart-note">Payment and delivery details are confirmed with D’REGAL.</p></div></aside><div class="cart-scrim" data-cart-close></div>`;
 }
@@ -18,6 +18,15 @@ function renderHeader() {
 function renderFooter() {
   document.querySelectorAll('[data-site-footer]').forEach((footer) => {
     footer.innerHTML = `<div class="footer-grid"><div class="footer-brand"><a href="index.html"><img src="assets/logo/dregal-logo.svg" alt="D'REGAL"></a><p>A contemporary fashion house for confident, expressive dressing.</p></div><div><p class="footer-heading">Explore</p><div class="footer-links"><a href="shop.html">Shop</a><a href="about.html">Our story</a><a href="faq.html">FAQ</a></div></div><div><p class="footer-heading">Connect</p><div class="footer-links"><a href="https://wa.me/2347031605920" target="_blank" rel="noreferrer">WhatsApp</a><a href="mailto:dregal@gmail.com">Email</a><a href="https://www.instagram.com/dregalcouture?mdxt=MTl4bDUyYzJqYWtnNg==" target="_blank" rel="noreferrer">Instagram</a></div></div><div><p class="footer-heading">Visit</p><div class="footer-links"><span>Lagos, Nigeria</span><span>Ibadan, Nigeria</span><a href="contact.html">Custom enquiries</a></div></div></div><div class="footer-bottom"><p>© ${new Date().getFullYear()} D’REGAL</p><p>Made for expression</p></div>`;
+  });
+}
+
+function renderPaymentMarks() {
+  document.querySelectorAll('[data-site-footer]').forEach((footer) => {
+    footer.insertAdjacentHTML(
+      'beforeend',
+      '<div class="payment-strip"><span>Accepted payments</span><strong>VISA</strong><strong>VERVE</strong><strong>Stripe</strong><strong>PayPal</strong><strong>Reanest</strong></div>'
+    );
   });
 }
 
@@ -102,6 +111,7 @@ function initialiseFaqAndForms() {
 document.addEventListener('DOMContentLoaded', () => {
   renderHeader();
   renderFooter();
+  renderPaymentMarks();
   initialiseMenu();
   initialiseCart();
   initialiseFaqAndForms();
