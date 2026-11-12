@@ -1,0 +1,18 @@
+:root {
+  --ds-color-ink: #111113;
+  --ds-color-charcoal: #1e293b;
+  --ds-color-muted: #6b7280;
+  --ds-color-line: rgba(17, 17, 19, 0.12);
+  --ds-color-paper: #f8f7f5;
+  --ds-color-white: #fff;
+  --ds-color-purple: #a855f7;
+  --ds-color-purple-deep: #7e22ce;
+  --ds-font-body: "Inter", Arial, sans-serif;
+  --ds-font-display: "Krona One", sans-serif;
+  --ds-radius-sm: 12px;
+  --ds-radius-md: 18px;
+  --ds-radius-lg: 20px;
+  --ds-radius-pill: 999px;
+  --ds-shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  --ds-shadow-drawer: -20px 0 60px rgba(0, 0, 0, 0.12);
+}

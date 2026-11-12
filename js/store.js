@@ -2,6 +2,11 @@ const CART_KEY = "dregal-cart";
 const WISHLIST_KEY = "dregal-wishlist";
 const WHATSAPP_NUMBER = "2347031605920";
 const INSTAGRAM_URL = "https://www.instagram.com/dregalcouture/";
+window.dregalCompliance ||= {
+  validateEmail: (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || "").trim()),
+  getConsent: () => JSON.parse(localStorage.getItem("dregal-consent-v1") || "null"),
+  setConsent: (value) => localStorage.setItem("dregal-consent-v1", JSON.stringify({ ...value, updatedAt: new Date().toISOString() })),
+};
 const getCart = () => {
   try {
     return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
@@ -163,9 +168,30 @@ function renderFooter() {
     <div class="footer-main"><div class="footer-brand"><a class="wordmark wordmark--footer" href="index.html">D’REGAL<span>.</span><small>BEYOND THE ORDINARY</small></a><p>Contemporary fashion for effortless style, comfort and expression.</p></div>
       <div><p class="footer-label">Explore</p><a href="shop.html">Shop all</a><a href="about.html">Our story</a><a href="faq.html">FAQs</a></div>
       <div><p class="footer-label">Connect</p><a href="https://wa.me/${WHATSAPP_NUMBER}" target="_blank" rel="noreferrer">WhatsApp</a><a href="mailto:dregal@gmail.com">Email</a><a href="${INSTAGRAM_URL}" target="_blank" rel="noreferrer">Instagram</a></div>
-      <div><p class="footer-label">Find us</p><span>Lagos, Nigeria</span><span>Ibadan, Nigeria</span><span>Worldwide enquiries</span></div>
+      <div><p class="footer-label">Find us</p><span>Lagos, Nigeria</span><span>Ibadan, Nigeria</span><span>Worldwide enquiries</span><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund-policy.html">Refunds</a><a href="subprocessors.html">Subprocessors</a><a href="data-requests.html">Your data</a></div>
     </div><div class="footer-bottom"><span>© ${new Date().getFullYear()} D’REGAL</span><span>BEYOND THE ORDINARY</span><a href="#top">Back to top </a></div>`),
   );
+}
+function initialiseCompliance() {
+  if (!window.dregalCompliance) return;
+  const saved = window.dregalCompliance.getConsent();
+  if (!saved) {
+    const banner = document.createElement("section");
+    banner.className = "cookie-banner";
+    banner.setAttribute("aria-label", "Cookie preferences");
+    banner.innerHTML = '<div><strong>Privacy choices</strong><p>We use essential storage for site functions. Optional analytics and marketing storage stay off unless you choose them.</p></div><div class="cookie-actions"><button class="button button--outline" data-cookie="necessary">Essential only</button><button class="button button--dark" data-cookie="all">Allow optional</button><a class="text-link" href="privacy.html">Learn more</a></div>';
+    document.body.append(banner);
+    banner.addEventListener("click", (event) => {
+      const choice = event.target.closest("[data-cookie]")?.dataset.cookie;
+      if (!choice) return;
+      window.dregalCompliance.setConsent({ necessary: true, analytics: choice === "all", marketing: choice === "all" });
+      banner.remove();
+    });
+  }
+  document.querySelectorAll("[data-marketing-consent]").forEach((input) => input.addEventListener("change", () => {
+    const current = window.dregalCompliance.getConsent() || { necessary: true };
+    window.dregalCompliance.setConsent({ ...current, marketing: input.checked });
+  }));
 }
 function initialiseSite() {
   renderHeader();
@@ -294,6 +320,7 @@ function initialiseSite() {
       '<span class="currency-label">NGN / USD</span><span class="sr-only">Switch currency</span>';
   });
   updateCartCount();
+  initialiseCompliance();
 }
 document.addEventListener("DOMContentLoaded", initialiseSite);
 document.addEventListener("click", (event) => {

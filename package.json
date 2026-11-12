@@ -1,0 +1,11 @@
+{
+  "name": "dregal-fashion-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "node --check js/store.js && node --check js/shop.js && node --check js/compliance.js && node --check js/monitoring.js",
+    "typecheck": "node scripts/typecheck.mjs",
+    "test": "node --test tests/compliance.test.mjs",
+    "test:integration": "node --test tests/compliance.test.mjs"
+  }
+}
