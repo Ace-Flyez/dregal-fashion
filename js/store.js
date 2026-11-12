@@ -21,16 +21,21 @@ function isSaved(id) {
 }
 function toggleWishlist(item) {
   const list = getWishlist();
-  const next = isSaved(item.id)
+  const wasSaved = isSaved(item.id);
+  const next = wasSaved
     ? list.filter((saved) => saved.id !== item.id)
     : [...list, item];
   localStorage.setItem(WISHLIST_KEY, JSON.stringify(next));
-  return !isSaved(item.id);
+  return !wasSaved;
 }
 function updateWishlistCount() {
   document
     .querySelectorAll("[data-wishlist-count]")
-    .forEach((el) => (el.textContent = getWishlist().length));
+    .forEach((el) => {
+      const count = getWishlist().length;
+      el.textContent = count;
+      el.hidden = count === 0;
+    });
 }
 function showToast(message) {
   let toast = document.querySelector("[data-toast]");
@@ -38,6 +43,8 @@ function showToast(message) {
     toast = document.createElement("div");
     toast.className = "site-toast";
     toast.dataset.toast = "";
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
     document.body.appendChild(toast);
   }
   toast.textContent = message;
@@ -57,7 +64,10 @@ function updateCartCount() {
   const count = getCart().reduce((sum, item) => sum + item.quantity, 0);
   document
     .querySelectorAll("[data-cart-count]")
-    .forEach((el) => (el.textContent = count));
+    .forEach((el) => {
+      el.textContent = count;
+      el.hidden = count === 0;
+    });
 }
 function cartSubtotal() {
   return getCart().reduce((sum, item) => sum + item.price * item.quantity, 0);

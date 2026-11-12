@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(productCard)
       .join("")}</div></section>`;
   const message = (custom) =>
-    `Hello D’REGAL, I would like to ${custom ? "ask about customising" : "order"} the ${p.name}.\n\nPrice: ${formatPrice(p.price)}${colour ? `\nColour: ${colour}` : ""}\nQuantity: ${quantity}\n\nPlease confirm availability, sizing, payment and delivery arrangements.`;
+    `Hello D’REGAL, I would like to ${custom ? "ask about customising" : "order"} the ${p.name}.\n\nPrice: ${formatPrice(p.price)}${colour ? `\nColour: ${colour}` : ""}\nSize: ${size}\nQuantity: ${quantity}\n\nPlease confirm availability, sizing, payment and delivery arrangements.`;
   const purchaseButton = host.querySelector("[data-add-detail]");
   if (purchaseButton && !host.querySelector("[data-detail-wishlist]")) {
     const saveButton = document.createElement("button");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveButton.setAttribute("aria-label", "Save this piece");
     saveButton.innerHTML =
       '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.7-8.8 10.6-8.8 10.6S3.2 14.4 3.2 8.7A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>';
-    purchaseButton.after(saveButton);
+    host.querySelector(".gallery-main")?.append(saveButton);
   }
   function updateLinks() {
     host.querySelector("[data-order-direct]").href = makeWhatsAppLink(
