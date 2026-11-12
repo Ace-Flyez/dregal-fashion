@@ -3328,6 +3328,13 @@ header[data-site-header] .bag-toggle span[data-cart-count] {
     min-width: 104px;
   }
 }
+
+/* Keep image wishlist controls clean and circular; do not blur a square area. */
+.product-card__visual .product-save {
+  border-radius: 50% !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
 @media (max-width: 560px) {
   header[data-site-header] .site-nav {
     min-height: 66px;
