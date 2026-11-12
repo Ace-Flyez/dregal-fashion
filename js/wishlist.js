@@ -1,1 +1,10 @@
-document.addEventListener('DOMContentLoaded', () => { const grid = document.querySelector('[data-wishlist-grid]'); const empty = document.querySelector('[data-wishlist-empty]'); if (!grid) return; const saved = getWishlist(); grid.innerHTML = saved.length ? saved.map((p, i) => productCard(getProduct(p.id) || p, i)).join('') : ''; empty.hidden = saved.length > 0; });
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.querySelector("[data-wishlist-grid]");
+  const empty = document.querySelector("[data-wishlist-empty]");
+  if (!grid) return;
+  const saved = getWishlist();
+  grid.innerHTML = saved.length
+    ? saved.map((p, i) => productCard(getProduct(p.id) || p, i)).join("")
+    : "";
+  empty.hidden = saved.length > 0;
+});

@@ -1,28 +1,123 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const host = document.querySelector('[data-product-detail]'); if (!host) return;
-  const p = getProduct(new URLSearchParams(location.search).get('id'));
-  if (!p) { host.innerHTML='<section class="page-intro"><p class="eyebrow">Not found</p><h1>This piece is not in the current edit.</h1><a class="text-link" href="shop.html">Return to the collection ↗</a></section>'; return; }
+document.addEventListener("DOMContentLoaded", () => {
+  const host = document.querySelector("[data-product-detail]");
+  if (!host) return;
+  const p = getProduct(new URLSearchParams(location.search).get("id"));
+  if (!p) {
+    host.innerHTML =
+      '<section class="page-intro"><p class="eyebrow">Not found</p><h1>This piece is not in the current edit.</h1><a class="text-link" href="shop.html">Return to the collection </a></section>';
+    return;
+  }
   document.title = `${p.name} | D’REGAL`;
-  let colour = p.colours[0] || ''; let size = p.sizes?.[1] || 'S'; let quantity = 1;
+  let colour = p.colours[0] || "";
+  let size = p.sizes?.[1] || "S";
+  let quantity = 1;
   host.innerHTML = `<div class="product-detail wrap">
-    <div class="product-gallery"><div class="gallery-main"><img data-main-image src="${p.images[0]}" alt="${p.name}"></div><div class="gallery-thumbs">${p.images.map((src,i)=>`<button class="gallery-thumb ${i===0?'is-active':''}" data-gallery-image="${src}" aria-label="View product image ${i+1}"><img src="${src}" alt="" loading="lazy"></button>`).join('')}</div></div>
-    <div class="product-info"><div class="product-info__top"><div><p class="eyebrow">D’REGAL / ${p.category.replace('-',' ')}</p><h1>${p.name}</h1></div><span class="product-code">Code: ${p.id.toUpperCase()}</span></div><p class="detail-price">${formatPrice(p.price)}</p><p class="detail-description">${p.description}</p>
-    <div class="detail-divider"></div><div class="detail-option"><span class="option-title">Colour</span>${p.colours.length?`<div class="colour-options">${p.colours.map((c,i)=>`<button class="colour-chip ${i===0?'is-selected':''}" data-colour="${c}">${c}</button>`).join('')}</div>`:'<p class="option-note">Colour options for this piece are being confirmed. Contact D’REGAL to discuss your preference.</p>'}</div>
-    <div class="detail-option size-option"><div class="option-row"><span class="option-title">Select size</span><a href="contact.html">Size guide</a></div><div class="size-options">${['XS','S','M','L'].map((s,i)=>`<button class="size-chip ${i===1?'is-selected':''}" data-size="${s}">${s}</button>`).join('')}</div></div>
+    <div class="product-gallery"><div class="gallery-main"><img data-main-image src="${p.images[0]}" alt="${p.name}"></div><div class="gallery-thumbs">${p.images.map((src, i) => `<button class="gallery-thumb ${i === 0 ? "is-active" : ""}" data-gallery-image="${src}" aria-label="View product image ${i + 1}"><img src="${src}" alt="" loading="lazy"></button>`).join("")}</div></div>
+    <div class="product-info"><div class="product-info__top"><div><p class="eyebrow">D’REGAL / ${p.category.replace("-", " ")}</p><h1>${p.name}</h1></div><span class="product-code">Code: ${p.id.toUpperCase()}</span></div><p class="detail-price">${formatPrice(p.price)}</p><p class="detail-description">${p.description}</p>
+    <div class="detail-divider"></div><div class="detail-option"><span class="option-title">Colour</span>${p.colours.length ? `<div class="colour-options">${p.colours.map((c, i) => `<button class="colour-chip ${i === 0 ? "is-selected" : ""}" data-colour="${c}">${c}</button>`).join("")}</div>` : '<p class="option-note">Colour options for this piece are being confirmed. Contact D’REGAL to discuss your preference.</p>'}</div>
+    <div class="detail-option size-option"><div class="option-row"><span class="option-title">Select size</span><a href="contact.html">Size guide</a></div><div class="size-options">${["XS", "S", "M", "L"].map((s, i) => `<button class="size-chip ${i === 1 ? "is-selected" : ""}" data-size="${s}">${s}</button>`).join("")}</div></div>
     <div class="detail-option"><span class="option-title">Quantity</span><div class="quantity-stepper"><button data-qty="-1" aria-label="Decrease quantity">−</button><span data-qty-value>1</span><button data-qty="1" aria-label="Increase quantity">+</button></div></div>
-    <div class="detail-actions"><button class="button button--dark button--wide" data-add-detail>Add to bag <span>+</span></button><a class="button button--outline button--wide" data-order-direct target="_blank" rel="noreferrer">Order via WhatsApp ↗</a></div><a class="text-link" data-custom-link target="_blank" rel="noreferrer">Ask about a custom version ↗</a>
+    <div class="detail-actions"><button class="button button--dark button--wide" data-add-detail>Add to bag <span>+</span></button><a class="button button--outline button--wide" data-order-direct target="_blank" rel="noreferrer">Order via WhatsApp </a></div><a class="text-link" data-custom-link target="_blank" rel="noreferrer">Ask about a custom version </a>
     <div class="product-assurance"><p><b>Made to feel like you.</b><br>Ready-made and custom-made enquiries welcome.</p><p>Delivery fees and timing are confirmed with D’REGAL once your location is known.</p></div></div></div>
-    <section class="related-section wrap"><div class="section-heading"><div><p class="eyebrow">Keep exploring</p><h2>More to make your own.</h2></div><a class="text-link" href="shop.html">View all pieces ↗</a></div><div class="product-grid">${products.filter(x=>x.id!==p.id).map(productCard).join('')}</div></section>`;
-  const message = custom => `Hello D’REGAL, I would like to ${custom?'ask about customising':'order'} the ${p.name}.\n\nPrice: ${formatPrice(p.price)}${colour?`\nColour: ${colour}`:''}\nQuantity: ${quantity}\n\nPlease confirm availability, sizing, payment and delivery arrangements.`;
-  const purchaseButton = host.querySelector('[data-add-detail]'); if (purchaseButton && !host.querySelector('[data-detail-wishlist]')) { const saveButton = document.createElement('button'); saveButton.className = 'detail-wishlist'; saveButton.type = 'button'; saveButton.dataset.detailWishlist = ''; saveButton.setAttribute('aria-label', 'Save this piece'); saveButton.textContent = '♡'; purchaseButton.after(saveButton); }
-  function updateLinks(){ host.querySelector('[data-order-direct]').href=makeWhatsAppLink(message(false));host.querySelector('[data-custom-link]').href=makeWhatsAppLink(message(true));host.querySelector('[data-qty-value]').textContent=quantity; }
-  host.addEventListener('click', event => { const button=event.target.closest('[data-size]'); if(!button)return; size=button.dataset.size; host.querySelectorAll('[data-size]').forEach(x=>x.classList.toggle('is-selected',x===button)); updateLinks(); });
-  host.addEventListener('click',e=>{const thumb=e.target.closest('[data-gallery-image]');if(thumb){host.querySelector('[data-main-image]').src=thumb.dataset.galleryImage;host.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.toggle('is-active',x===thumb));}
-    const c=e.target.closest('[data-colour]');if(c){colour=c.dataset.colour;host.querySelectorAll('[data-colour]').forEach(x=>x.classList.toggle('is-selected',x===c));updateLinks();}
-    const q=e.target.closest('[data-qty]');if(q){quantity=Math.max(1,quantity+Number(q.dataset.qty));updateLinks();}
-    if(e.target.closest('[data-detail-wishlist]')){const saved=toggleWishlist({id:p.id,name:p.name,price:p.price,image:p.image});const button=e.target.closest('[data-detail-wishlist]');button.classList.toggle('is-saved',saved);button.textContent=saved?'♥':'♡';showToast(saved?'Saved to your pieces':'Removed from saved pieces');updateWishlistCount();}
-    if(e.target.closest('[data-add-detail]'))addToCart({id:p.id,name:p.name,price:p.price,image:p.image,colour,size,quantity});
-    const add=e.target.closest('[data-add-product]');if(add){const rel=getProduct(add.dataset.addProduct);addToCart({id:rel.id,name:rel.name,price:rel.price,image:rel.image,colour:rel.colours[0]||'',size:'',quantity:1});}
-  }); updateLinks();
-  const savedButton = host.querySelector('[data-detail-wishlist]'); if (savedButton && isSaved(p.id)) { savedButton.classList.add('is-saved'); savedButton.textContent = '♥'; }
+    <section class="related-section wrap"><div class="section-heading"><div><p class="eyebrow">Keep exploring</p><h2>More to make your own.</h2></div><a class="text-link" href="shop.html">View all pieces </a></div><div class="product-grid">${products
+      .filter((x) => x.id !== p.id)
+      .map(productCard)
+      .join("")}</div></section>`;
+  const message = (custom) =>
+    `Hello D’REGAL, I would like to ${custom ? "ask about customising" : "order"} the ${p.name}.\n\nPrice: ${formatPrice(p.price)}${colour ? `\nColour: ${colour}` : ""}\nQuantity: ${quantity}\n\nPlease confirm availability, sizing, payment and delivery arrangements.`;
+  const purchaseButton = host.querySelector("[data-add-detail]");
+  if (purchaseButton && !host.querySelector("[data-detail-wishlist]")) {
+    const saveButton = document.createElement("button");
+    saveButton.className = "detail-wishlist";
+    saveButton.type = "button";
+    saveButton.dataset.detailWishlist = "";
+    saveButton.setAttribute("aria-label", "Save this piece");
+    saveButton.innerHTML =
+      '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.7-8.8 10.6-8.8 10.6S3.2 14.4 3.2 8.7A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>';
+    purchaseButton.after(saveButton);
+  }
+  function updateLinks() {
+    host.querySelector("[data-order-direct]").href = makeWhatsAppLink(
+      message(false),
+    );
+    host.querySelector("[data-custom-link]").href = makeWhatsAppLink(
+      message(true),
+    );
+    host.querySelector("[data-qty-value]").textContent = quantity;
+  }
+  host.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-size]");
+    if (!button) return;
+    size = button.dataset.size;
+    host
+      .querySelectorAll("[data-size]")
+      .forEach((x) => x.classList.toggle("is-selected", x === button));
+    updateLinks();
+  });
+  host.addEventListener("click", (e) => {
+    const thumb = e.target.closest("[data-gallery-image]");
+    if (thumb) {
+      host.querySelector("[data-main-image]").src = thumb.dataset.galleryImage;
+      host
+        .querySelectorAll(".gallery-thumb")
+        .forEach((x) => x.classList.toggle("is-active", x === thumb));
+    }
+    const c = e.target.closest("[data-colour]");
+    if (c) {
+      colour = c.dataset.colour;
+      host
+        .querySelectorAll("[data-colour]")
+        .forEach((x) => x.classList.toggle("is-selected", x === c));
+      updateLinks();
+    }
+    const q = e.target.closest("[data-qty]");
+    if (q) {
+      quantity = Math.max(1, quantity + Number(q.dataset.qty));
+      updateLinks();
+    }
+    if (e.target.closest("[data-detail-wishlist]")) {
+      const saved = toggleWishlist({
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        image: p.image,
+      });
+      const button = e.target.closest("[data-detail-wishlist]");
+      button.classList.toggle("is-saved", saved);
+      button.innerHTML =
+        '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.7-8.8 10.6-8.8 10.6S3.2 14.4 3.2 8.7A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>';
+      showToast(saved ? "Saved to your pieces" : "Removed from saved pieces");
+      updateWishlistCount();
+    }
+    if (e.target.closest("[data-add-detail]"))
+      addToCart({
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        image: p.image,
+        colour,
+        size,
+        quantity,
+      });
+    const add = e.target.closest("[data-add-product]");
+    if (add) {
+      const rel = getProduct(add.dataset.addProduct);
+      addToCart({
+        id: rel.id,
+        name: rel.name,
+        price: rel.price,
+        image: rel.image,
+        colour: rel.colours[0] || "",
+        size: "",
+        quantity: 1,
+      });
+    }
+  });
+  updateLinks();
+  const savedButton = host.querySelector("[data-detail-wishlist]");
+  if (savedButton && isSaved(p.id)) {
+    savedButton.classList.add("is-saved");
+    savedButton.innerHTML =
+      '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.7-8.8 10.6-8.8 10.6S3.2 14.4 3.2 8.7A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>';
+  }
 });
