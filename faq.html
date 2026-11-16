@@ -2,105 +2,122 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>FAQ | D'REGAL</title>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <title>FAQs | D’REGAL</title>
     <meta
       name="description"
-      content="Answers to ordering, custom-made clothing and delivery enquiries at D'REGAL."
+      content="Answers to common questions about ordering, sizing, custom clothing and delivery at D’REGAL."
     />
-    <link rel="icon" href="assets/logo/dregal-logo.svg" />
-    <link rel="stylesheet" href="css/style.css?v=20261102" />
-    <link rel="stylesheet" href="css/responsive.css?v=20261102" />
-    <script src="js/products.js" defer></script>
-    <script src="js/currency.js" defer></script>
-    <script src="js/cart.js" defer></script>
-    <script src="js/main.js?v=20261102" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Krona+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/products.js"></script>
+    <script defer src="js/store.js"></script>
   </head>
-  <body>
+  <body id="top">
     <header data-site-header></header>
-    <main id="main-content">
-      <section class="page-intro">
-        <p class="eyebrow">Frequently asked questions</p>
-        <h1>Good to know.</h1>
+    <main>
+      <section class="page-hero wrap">
+        <p class="eyebrow">The useful details</p>
+        <h1>Good to<br /><em>know.</em></h1>
         <p>
-          For details that depend on your order, we will confirm directly with you before payment.
+          Here's a little more about ordering with D’REGAL. If something depends
+          on your specific order, we'll confirm it with you directly.
         </p>
       </section>
-      <section class="faq-list">
-        <article class="faq-item">
-          <button aria-expanded="false">
-            <span>How do I place an order?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-item__answer">
-            Choose a piece, add it to your bag and select “Order via WhatsApp”. Your order summary
-            is prepared for you, and D’REGAL will confirm the next steps.
-          </div>
-        </article>
-        <article class="faq-item">
-          <button aria-expanded="false">
-            <span>Do you offer ready-made and custom-made clothing?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-item__answer">
-            Yes. The current collection includes ready-made pieces, and D’REGAL also welcomes
-            custom-made enquiries. Send your idea through WhatsApp to begin the conversation.
-          </div>
-        </article>
-        <article class="faq-item">
-          <button aria-expanded="false">
-            <span>How do I confirm my size?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-item__answer">
-            Size details are confirmed personally at this stage. Please contact D’REGAL on WhatsApp
-            before ordering so we can help with your fit enquiry.
-          </div>
-        </article>
-        <article class="faq-item">
-          <button aria-expanded="false">
-            <span>Can I customise an order?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-item__answer">
-            Yes. Use the customisation enquiry option on a product page or contact D’REGAL on
-            WhatsApp to discuss what you have in mind.
-          </div>
-        </article>
-        <article class="faq-item">
-          <button aria-expanded="false">
-            <span>Where do you deliver?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-item__answer">
-            D’REGAL serves customers in Nigeria and welcomes international enquiries. Delivery
-            options and costs depend on your location and are confirmed before an order is
-            finalised.
-          </div>
-        </article>
-        <article class="faq-item">
-          <button aria-expanded="false">
-            <span>What is the returns and exchanges policy?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-item__answer">
-            Please contact D’REGAL within seven days of receiving your order to discuss a return or
-            exchange. Final arrangements are subject to confirmation by D’REGAL. Custom-made order
-            terms may need separate clarification.
-          </div>
-        </article>
-        <article class="faq-item">
-          <button aria-expanded="false">
-            <span>How do payment arrangements work?</span>
-            <span>+</span>
-          </button>
-          <div class="faq-item__answer">
-            Payment arrangements are confirmed directly with D’REGAL after your order details have
-            been reviewed. This website does not process or store payment details.
-          </div>
-        </article>
+      <section class="faq-layout wrap">
+        <div class="faq-aside">
+          <p class="eyebrow">Need another answer?</p>
+          <h2>We're just<br />a message away.</h2>
+          <a class="button button--outline" href="contact.html"
+            >Contact D’REGAL </a
+          >
+        </div>
+        <div class="faq-list">
+          <article class="faq-item">
+            <button aria-expanded="false">
+              <span>How do I place an order?</span><b>+</b>
+            </button>
+            <div class="faq-answer">
+              Choose a piece, add it to your bag and select “Order via
+              WhatsApp”. Your order summary is prepared for you, and D’REGAL
+              will confirm availability and the next steps.
+            </div>
+          </article>
+          <article class="faq-item">
+            <button aria-expanded="false">
+              <span>Do you offer ready-made and custom-made clothing?</span
+              ><b>+</b>
+            </button>
+            <div class="faq-answer">
+              Yes. The current edit includes ready-made pieces, and D’REGAL also
+              welcomes custom-made enquiries. Send your idea through WhatsApp to
+              begin the conversation.
+            </div>
+          </article>
+          <article class="faq-item">
+            <button aria-expanded="false">
+              <span>How do I confirm my size?</span><b>+</b>
+            </button>
+            <div class="faq-answer">
+              Size details are confirmed personally at this stage. Please
+              contact D’REGAL before ordering so we can help with your fit
+              enquiry.
+            </div>
+          </article>
+          <article class="faq-item">
+            <button aria-expanded="false">
+              <span>Can I customise an order?</span><b>+</b>
+            </button>
+            <div class="faq-answer">
+              Yes. Contact D’REGAL to discuss what you have in mind.
+              Customisation options, pricing and production timing will be
+              confirmed before you proceed.
+            </div>
+          </article>
+          <article class="faq-item">
+            <button aria-expanded="false">
+              <span>Where do you deliver?</span><b>+</b>
+            </button>
+            <div class="faq-answer">
+              D’REGAL is based in Lagos and Ibadan, serves customers in Nigeria
+              and welcomes international enquiries. Delivery options and costs
+              depend on your location and are confirmed before an order is
+              finalised.
+            </div>
+          </article>
+          <article class="faq-item">
+            <button aria-expanded="false">
+              <span>What is the returns and exchanges policy?</span><b>+</b>
+            </button>
+            <div class="faq-answer">
+              Please contact D’REGAL within seven days of receiving your order
+              to discuss a return or exchange. Final arrangements are subject to
+              confirmation by D’REGAL. Custom-made order terms may need separate
+              clarification.
+            </div>
+          </article>
+          <article class="faq-item">
+            <button aria-expanded="false">
+              <span>How do payment arrangements work?</span><b>+</b>
+            </button>
+            <div class="faq-answer">
+              Payment arrangements are confirmed directly with D’REGAL after
+              your order details have been reviewed. This website does not
+              process or store payment details.
+            </div>
+          </article>
+        </div>
       </section>
     </main>
-    <footer class="site-footer" data-site-footer></footer>
+    <footer data-site-footer></footer>
   </body>
 </html>
