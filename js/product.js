@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
     saveButton.className = "detail-wishlist";
     saveButton.type = "button";
     saveButton.dataset.detailWishlist = "";
-    saveButton.setAttribute("aria-label", "Save this piece");
+    saveButton.setAttribute("aria-label", isSaved(p.id) ? "Remove this piece from saved pieces" : "Save this piece");
+    saveButton.setAttribute("aria-pressed", String(isSaved(p.id)));
     saveButton.innerHTML =
       '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.7-8.8 10.6-8.8 10.6S3.2 14.4 3.2 8.7A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>';
     host.querySelector(".gallery-main")?.append(saveButton);
@@ -93,6 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const button = e.target.closest("[data-detail-wishlist]");
       button.classList.toggle("is-saved", saved);
+      button.setAttribute("aria-pressed", String(saved));
+      button.setAttribute("aria-label", saved ? "Remove this piece from saved pieces" : "Save this piece");
       button.innerHTML =
         '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.7-8.8 10.6-8.8 10.6S3.2 14.4 3.2 8.7A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>';
       showToast(saved ? "Saved to your pieces" : "Removed from saved pieces");
@@ -126,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const savedButton = host.querySelector("[data-detail-wishlist]");
   if (savedButton && isSaved(p.id)) {
     savedButton.classList.add("is-saved");
+    savedButton.setAttribute("aria-pressed", "true");
     savedButton.innerHTML =
       '<svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.7c0 5.7-8.8 10.6-8.8 10.6S3.2 14.4 3.2 8.7A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>';
   }
